@@ -1,17 +1,33 @@
 #include "main.h"
-/**
- * _strspn - a function ...
- * @s: the chaine
- * @accept: the chaine
- *
- * Return: 1 or 0
- */
 
+/**
+ * _strspn - Entry point
+ * @s: input
+ * @accept: input
+ * Return: Always 0 (Success)
+ */
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int i = 0;
+	unsigned int i, n, value, check;
 
-	while (s[i] && strchr(accept, s[i]))
-		i++;
-	return (i);
+	value = 0;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		check = 0;
+
+		for (n = 0; accept[n] != '\0'; n++)
+		{
+			if (accept[n] == s[i])
+			{
+				value++;
+				check = 1;
+			}
+		}
+
+		if (check == 0)
+			return (value);
+	}
+
+	return (value);
 }
