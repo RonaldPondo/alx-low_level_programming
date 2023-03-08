@@ -1,17 +1,17 @@
 /**
- * factorial - find the factorial of n
- * @n: Number to find the factorial of
+ * _pow_recursion - Find the value of x to the power of y
+ * @x: The number to multiple
+ * @y: The power to multiply it to
  *
- * Return: The value of the factorial
+ * Return: Value of x to the power of y
  */
-int factorial(int n)
+int _pow_recursion(int x, int y)
 {
-	if (n < 0)
+	if (y < 0)
 		return (-1);
-	else if (n == 0)
+	else if (y == 0)
 		return (1);
-	else if (n > 1)
-		return (n * factorial(n - 1));
-	else
-		return (n);
+	else if (y > 0)
+		return (x * _pow_recursion(x, y - 1));
+	return (x * _pow_recursion(x, y - 1));
 }
