@@ -1,5 +1,4 @@
 #include <stdlib.h>
-
 /**
  * word_count - Count number of words separated by spaces in a string
  * @str: String to check
@@ -10,7 +9,6 @@ int word_count(char *str)
 {
 	int count;
 	int i;
-
 	i = count = 0;
 	while (str[i] != '\0')
 	{
@@ -23,7 +21,6 @@ int word_count(char *str)
 	}
 	return (count);
 }
-
 /**
  * find_words_len - Find length of all the words in a string
  * @str: String to check length of words in
@@ -31,40 +28,14 @@ int word_count(char *str)
  *
  * Return: Combined length of words
  */
-int *find_words_len(char *str, int words)
-{
-	int i, word, len;
-	int *sizes;
-
-	sizes = malloc(words * sizeof(int));
-	if (sizes == NULL)
-		return (NULL);
-	i = word = 0;
-	while (word < words)
-	{
-		if (str[i] != ' ')
-		{
-			len = 0;
-			while (str[i] != ' ')
-			{
-				len++;
+	@@ -50,7 +51,6 @@ int *find_words_len(char *str, int words)
 				i++;
 			}
 			len++;
 			sizes[word] = len;
 			word++;
 		}
-		i++;
-	}
-	return (sizes);
-}
-
-/**
- * strtow - Split a string into words
- * @str: String to split
- *
- * Return: Return pointer to an array of strings, NULL if it fails
- */
+	@@ -68,57 +68,43 @@ int *find_words_len(char *str, int words)
 char **strtow(char *str)
 {
 	char **nstr;
