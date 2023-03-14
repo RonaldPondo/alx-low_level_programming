@@ -1,40 +1,48 @@
-#include "main.h"
+#include <stdlib.h>
 
 /**
- * alloc_grid - create a 2-dimensional array with each element set to 0
- * @width: desired number of columns
- * @height: desired number of rows
+ * alloc_grid - Create a 2 dimensional array
+ * @width: Width of grid, aka # of columns
+ * @height: Height of grid, aka # of rows
  *
- * Return: NULL if memory allocation fails or any argument is less than 1,
- * otherwise return a pointer to the first element of the array.
+ * Return: Pointer to 2D array, NULL if it fails
  */
 int **alloc_grid(int width, int height)
 {
-	int **matrix, row, column;
+	int **grid;
+	int i, j;
 
-	if (width < 1 || height < 1)
+	i = 0;
+	if (width <= 0 || height <= 0)
 		return (NULL);
-
-	matrix = (int **) malloc(sizeof(int *) * height);
-
-	if (!matrix)
-		return (NULL);
-
-	for (row = 0; row < height; ++row)
+	grid = malloc(height * sizeof(*grid));
+	if (grid == NULL)
 	{
-		matrix[row] = (int *) malloc(sizeof(int) * width);
-
-		if (!matrix[row])
+		free(grid);
+		return (NULL);
+	}
+	while (i < height)
+	{
+		grid[i] = malloc(width * sizeof(**grid));
+		if (grid[i] == NULL)
 		{
-			while (--row > -1)
-				free(matrix[row]);
-			free(matrix);
+			i--;
+			while (i >= 0)
+			{
+				free(grid[i]);
+				i--;
+			}
+			free(grid);
 			return (NULL);
 		}
-
-		for (column = 0; column < width; ++column)
-			matrix[row][column] = 0;
+		j = 0;
+		while (j < width)
+		{
+			grid[i][j] = 0;
+			j++;
+		}
+		i++;
 	}
-
-	return (matrix);
+	i = 0;
+	return (grid);
 }
