@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include "main.h"
-
 /**
  * get_endianness - Write a function that checks the endianness.
  * Prototype: int get_endianness(void).
@@ -8,8 +6,8 @@
  */
 int get_endianness(void)
 {
-	unsigned int x = 1;
-	char *c = (char *) &x;
+	unsigned int i = 1;
+	char *c = (char *) &i;
 
-	return ((int)*c);
+	return (*c);
 }
